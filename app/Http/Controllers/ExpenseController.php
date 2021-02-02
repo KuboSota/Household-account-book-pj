@@ -31,6 +31,8 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $item = new Expense;
+        $item->user_id = $request->user_id;
+        $item->date = $request->date;
         $item->expense = $request->expense;
         $item->contents = $request->contents;
         $item->save();
@@ -72,6 +74,7 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $item = Expense::where('id', $expense->id)->first();
+        $item->date = $request->date;
         $item->expense = $request->expense;
         $item->contents = $request->contents;
         $item->save();

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\income;
+use App\Models\Income;
 use Illuminate\Http\Request;
 
 
 class IncomeController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['index']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +37,8 @@ class IncomeController extends Controller
     public function store(Request $request)
     {
         $item = new Income;
+        $item->user_id = $request->user_id;
+        $item->date = $request->date;
         $item->income = $request->income;
         $item->contents = $request->contents;
         $item->save();
@@ -72,6 +80,7 @@ class IncomeController extends Controller
     public function update(Request $request, Income $income)
     {
         $item = Income::where('id', $income->id)->first();
+        $item->date = $request->date;
         $item->income = $request->income;
         $item->contents = $request->contents;
         $item->save();

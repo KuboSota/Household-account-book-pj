@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +33,9 @@ use App\Http\Controllers\ExpenseController;
 // Route::delete('/expense/{id}', [ExpenseController::class, 'delete']);
 Route::apiResource('/incomes', IncomeController::class);
 Route::apiResource('/expenses', ExpenseController::class);
-
+Route::post('/register', [RegisterController::class, 'post']);
+Route::post('/login', [LoginController::class, 'post']);
+Route::post('/logout', [LogoutController::class, 'post']);
+Route::get('/user', [UserController::class, 'get']);
+Route::put('/put', [UserController::class, 'put']);
 
